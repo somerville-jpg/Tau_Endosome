@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>View in AR</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #111111;
+      --mid: #888888;
+      --rule: #e0e0e0;
+      --bg: #f9f9f7;
+      --accent: #0057ff;
+      --android: #1a8a4a;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    /* top rule line */
+    .top-rule {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--ink);
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* label */
+    .label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 1.2rem;
+    }
+
+    /* model name */
+    .model-name {
+      font-size: 2rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+      color: var(--ink);
+    }
+
+    .model-name span {
+      font-weight: 500;
+    }
+
+    /* divider */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--rule);
+      margin: 1.8rem 0;
+    }
+
+    /* instruction */
+    .instruction {
+      font-size: 0.82rem;
+      color: var(--mid);
+      font-weight: 300;
+      line-height: 1.6;
+      margin-bottom: 1.8rem;
+    }
+
+    /* buttons */
+    .btn {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      padding: 1.1rem 1.4rem;
+      border: 1.5px solid var(--ink);
+      background: white;
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s, transform 0.1s;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.01em;
+    }
+
+    .btn:active { transform: scale(0.98); }
+
+    .btn.primary {
+      background: var(--ink);
+      color: white;
+    }
+
+    .btn.primary:hover { background: #222; }
+    .btn.secondary:hover { background: #f0f0ee; }
+
+    .btn-icon {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      text-align: left;
+    }
+
+    .btn-text-main { font-size: 0.88rem; font-weight: 500; }
+    .btn-text-sub  { font-size: 0.72rem; font-weight: 300; opacity: 0.65; }
+
+    /* device-specific visibility */
+    .ios-only     { display: none; }
+    .android-only { display: none; }
+    .all-devices  { display: flex; }
+
+    body.is-ios     .ios-only     { display: flex; }
+    body.is-android .android-only { display: flex; }
+    body.is-ios     .all-devices  { display: none; }
+    body.is-android .all-devices  { display: none; }
+
+    /* footer */
+    .footer {
+      margin-top: 2.4rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      color: var(--rule);
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    /* fade in */
+    .wrapper { animation: fadeUp 0.5s ease both; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-rule"></div>
+
+  <div class="wrapper">
+    <div class="label">3D Model — Augmented Reality</div>
+    <h1 class="model-name"><span>TauResize2</span></h1>
+
+    <div class="divider"></div>
+
+    <!-- SHOWN ON iOS -->
+    <p class="instruction ios-only">
+      Tap below to open the model in AR using your iPhone camera.
+    </p>
+    <a class="btn primary ios-only"
+       id="ios-btn"
+       href="YOUR_USDZ_FILE_URL_HERE"
+       rel="ar">
+      <span class="btn-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+        </svg>
+      </span>
+      <span class="btn-text">
+        <span class="btn-text-main">Open in AR</span>
+        <span class="btn-text-sub">iPhone · Quick Look</span>
+      </span>
+    </a>
+
+    <!-- SHOWN ON Android -->
+    <p class="instruction android-only">
+      Tap below to open the model in AR using your Android camera.
+    </p>
+    <a class="btn primary android-only"
+       id="android-btn"
+       href="#"
+       rel="ar">
+      <span class="btn-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+        </svg>
+      </span>
+      <span class="btn-text">
+        <span class="btn-text-main">View in Your Space</span>
+        <span class="btn-text-sub">Android · Scene Viewer</span>
+      </span>
+    </a>
+
+    <!-- SHOWN ON desktop / unknown -->
+    <p class="instruction all-devices">
+      Open this page on your phone to view the model in augmented reality using your camera.
+    </p>
+    <div class="btn all-devices" style="cursor:default; opacity:0.45; pointer-events:none;">
+      <span class="btn-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/>
+        </svg>
+      </span>
+      <span class="btn-text">
+        <span class="btn-text-main">Scan QR on your phone</span>
+        <span class="btn-text-sub">AR requires a mobile device</span>
+      </span>
+    </div>
+
+    <div class="footer">Scan · Place · Explore</div>
+  </div>
+
+  <script>
+    // ── CONFIGURATION ──────────────────────────────────────────────
+    // Replace these two URLs with your hosted file links after uploading
+    const USDZ_URL = 'https://drive.google.com/uc?export=download&id=1jSX-56aB4gK8JJwPNMKwrASUN_LFwS1A';
+    const GLB_URL  = 'https://drive.google.com/uc?export=download&id=17jTUApgyLiJI5Yo5z2f-UossEa2UHVY0';
+    // ───────────────────────────────────────────────────────────────
+
+    const ua = navigator.userAgent || '';
+    const isIOS     = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+    const isAndroid = /Android/.test(ua);
+
+    if (isIOS)     document.body.classList.add('is-ios');
+    if (isAndroid) document.body.classList.add('is-android');
+
+    // iOS — the <a rel="ar" href="..."> handles it natively, just set href
+    document.getElementById('ios-btn').href = USDZ_URL;
+
+    // Android — build Scene Viewer intent URL
+    document.getElementById('android-btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      const encoded = encodeURIComponent(GLB_URL);
+      const intentUrl =
+        `intent://arvr.google.com/scene-viewer/1.0?file=${encoded}&mode=ar_preferred` +
+        `#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url=${encoded};end;`;
+      window.location = intentUrl;
+    });
+  </script>
+</body>
+</html>
