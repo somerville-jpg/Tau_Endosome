@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
     :root {
       --ink: #111111;
       --mid: #888888;
@@ -16,7 +16,7 @@
       --accent: #0057ff;
       --android: #1a8a4a;
     }
-
+ 
     html, body {
       height: 100%;
       background: var(--bg);
@@ -24,7 +24,7 @@
       color: var(--ink);
       -webkit-font-smoothing: antialiased;
     }
-
+ 
     body {
       display: flex;
       flex-direction: column;
@@ -33,7 +33,7 @@
       min-height: 100vh;
       padding: 2rem;
     }
-
+ 
     /* top rule line */
     .top-rule {
       position: fixed;
@@ -41,7 +41,7 @@
       height: 3px;
       background: var(--ink);
     }
-
+ 
     .wrapper {
       width: 100%;
       max-width: 400px;
@@ -49,7 +49,7 @@
       flex-direction: column;
       gap: 0;
     }
-
+ 
     /* label */
     .label {
       font-family: 'DM Mono', monospace;
@@ -59,7 +59,7 @@
       color: var(--mid);
       margin-bottom: 1.2rem;
     }
-
+ 
     /* model name */
     .model-name {
       font-size: 2rem;
@@ -69,11 +69,11 @@
       margin-bottom: 0.4rem;
       color: var(--ink);
     }
-
+ 
     .model-name span {
       font-weight: 500;
     }
-
+ 
     /* divider */
     .divider {
       width: 100%;
@@ -81,7 +81,7 @@
       background: var(--rule);
       margin: 1.8rem 0;
     }
-
+ 
     /* instruction */
     .instruction {
       font-size: 0.82rem;
@@ -90,7 +90,7 @@
       line-height: 1.6;
       margin-bottom: 1.8rem;
     }
-
+ 
     /* buttons */
     .btn {
       display: flex;
@@ -110,17 +110,17 @@
       margin-bottom: 0.75rem;
       letter-spacing: 0.01em;
     }
-
+ 
     .btn:active { transform: scale(0.98); }
-
+ 
     .btn.primary {
       background: var(--ink);
       color: white;
     }
-
+ 
     .btn.primary:hover { background: #222; }
     .btn.secondary:hover { background: #f0f0ee; }
-
+ 
     .btn-icon {
       width: 28px;
       height: 28px;
@@ -129,27 +129,27 @@
       align-items: center;
       justify-content: center;
     }
-
+ 
     .btn-text {
       display: flex;
       flex-direction: column;
       gap: 0.1rem;
       text-align: left;
     }
-
+ 
     .btn-text-main { font-size: 0.88rem; font-weight: 500; }
     .btn-text-sub  { font-size: 0.72rem; font-weight: 300; opacity: 0.65; }
-
+ 
     /* device-specific visibility */
     .ios-only     { display: none; }
     .android-only { display: none; }
     .all-devices  { display: flex; }
-
+ 
     body.is-ios     .ios-only     { display: flex; }
     body.is-android .android-only { display: flex; }
     body.is-ios     .all-devices  { display: none; }
     body.is-android .all-devices  { display: none; }
-
+ 
     /* footer */
     .footer {
       margin-top: 2.4rem;
@@ -160,7 +160,7 @@
       text-transform: uppercase;
       text-align: center;
     }
-
+ 
     /* fade in */
     .wrapper { animation: fadeUp 0.5s ease both; }
     @keyframes fadeUp {
@@ -171,13 +171,13 @@
 </head>
 <body>
   <div class="top-rule"></div>
-
+ 
   <div class="wrapper">
     <div class="label">3D Model — Augmented Reality</div>
-    <h1 class="model-name"><span>TauResize2</span></h1>
-
+    <h1 class="model-name"><span>TKLAB Tau Endosome</span></h1>
+ 
     <div class="divider"></div>
-
+ 
     <!-- SHOWN ON iOS -->
     <p class="instruction ios-only">
       Tap below to open the model in AR using your iPhone camera.
@@ -196,7 +196,7 @@
         <span class="btn-text-sub">iPhone · Quick Look</span>
       </span>
     </a>
-
+ 
     <!-- SHOWN ON Android -->
     <p class="instruction android-only">
       Tap below to open the model in AR using your Android camera.
@@ -215,7 +215,7 @@
         <span class="btn-text-sub">Android · Scene Viewer</span>
       </span>
     </a>
-
+ 
     <!-- SHOWN ON desktop / unknown -->
     <p class="instruction all-devices">
       Open this page on your phone to view the model in augmented reality using your camera.
@@ -231,27 +231,27 @@
         <span class="btn-text-sub">AR requires a mobile device</span>
       </span>
     </div>
-
+ 
     <div class="footer">Scan · Place · Explore</div>
   </div>
-
+ 
   <script>
     // ── CONFIGURATION ──────────────────────────────────────────────
     // Replace these two URLs with your hosted file links after uploading
-    const USDZ_URL = 'https://drive.google.com/uc?export=download&id=1jSX-56aB4gK8JJwPNMKwrASUN_LFwS1A';
+    const USDZ_URL = 'https://somerville-jpg.github.io/Tau_Endosome/Tau_endo.usdz';
     const GLB_URL  = 'https://drive.google.com/uc?export=download&id=17jTUApgyLiJI5Yo5z2f-UossEa2UHVY0';
     // ───────────────────────────────────────────────────────────────
-
+ 
     const ua = navigator.userAgent || '';
     const isIOS     = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
     const isAndroid = /Android/.test(ua);
-
+ 
     if (isIOS)     document.body.classList.add('is-ios');
     if (isAndroid) document.body.classList.add('is-android');
-
+ 
     // iOS — the <a rel="ar" href="..."> handles it natively, just set href
     document.getElementById('ios-btn').href = USDZ_URL;
-
+ 
     // Android — build Scene Viewer intent URL
     document.getElementById('android-btn').addEventListener('click', function(e) {
       e.preventDefault();
