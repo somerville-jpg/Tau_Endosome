@@ -26,8 +26,6 @@
     .card-body{padding:1.2rem 1.4rem 1.4rem}
     .card-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mid);margin-bottom:.35rem}
     .card-title{font-size:1.15rem;font-weight:500;letter-spacing:-.01em;margin-bottom:1.1rem}
-
-    /* Button row */
     .btn-row{display:flex;gap:.6rem}
     .btn{display:flex;align-items:center;justify-content:center;gap:.55rem;flex:1;padding:1rem .8rem;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:500;text-decoration:none;cursor:pointer;transition:opacity .15s,transform .1s;border:none}
     .btn:active{transform:scale(.97)}
@@ -39,11 +37,14 @@
     .btn-icon{width:18px;height:18px;flex-shrink:0}
     .btn-label{white-space:nowrap}
 
-    /* Device visibility */
-    body.is-ios .show-android{display:none!important}
-    body.is-android .show-ios{display:none!important}
-    body.is-desktop .show-ios{display:none!important}
-    body.is-desktop .show-android{display:none!important}
+    /* Hide everything by default, show based on device class on body */
+    .show-ios,
+    .show-android,
+    .show-desktop-only { display: none !important; }
+
+    body.is-ios .show-ios { display: flex !important; }
+    body.is-android .show-android { display: flex !important; }
+    body.is-desktop .show-desktop-only { display: flex !important; }
 
     .footer{margin-top:3rem;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.12em;color:var(--rule);text-transform:uppercase}
     @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
@@ -67,25 +68,25 @@
         <div class="card-title">TKLAB Tau Endosome</div>
         <div class="btn-row">
 
-          <!-- AR button: iOS -->
+          <!-- AR: iOS -->
           <a class="btn btn-ar show-ios" href="https://somerville-jpg.github.io/Tau_Endosome/Tau_endo.usdz" rel="ar">
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
             <span class="btn-label">View in AR</span>
           </a>
 
-          <!-- AR button: Android -->
+          <!-- AR: Android -->
           <a class="btn btn-ar show-android" href="#" onclick="launchAR(event,'https://drive.google.com/uc?export=download&id=17jTUApgyLiJI5Yo5z2f-UossEa2UHVY0')">
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
             <span class="btn-label">View in AR</span>
           </a>
 
-          <!-- AR button: Desktop (disabled) -->
-          <span class="btn btn-ar btn-disabled show-desktop">
+          <!-- AR: Desktop only -->
+          <span class="btn btn-ar btn-disabled show-desktop-only">
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
             <span class="btn-label">View in AR</span>
           </span>
 
-          <!-- Movie button: always visible -->
+          <!-- Movie: always visible -->
           <a class="btn btn-movie" href="https://youtu.be/lfn8qRkQW_I" target="_blank">
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
             <span class="btn-label">View Movie</span>
@@ -102,25 +103,25 @@
         <div class="card-title">Clathrin Coat</div>
         <div class="btn-row">
 
-          <!-- AR button: iOS -->
+          <!-- AR: iOS -->
           <a class="btn btn-ar show-ios" href="https://somerville-jpg.github.io/Tau_Endosome/CME.usdz" rel="ar">
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
             <span class="btn-label">View in AR</span>
           </a>
 
-          <!-- AR button: Android -->
+          <!-- AR: Android -->
           <a class="btn btn-ar show-android" href="#" onclick="launchAR(event,'https://drive.google.com/uc?export=download&id=1OkqSNM62a8SSF0aQxYvA5_qIvALCehDK')">
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
             <span class="btn-label">View in AR</span>
           </a>
 
-          <!-- AR button: Desktop (disabled) -->
-          <span class="btn btn-ar btn-disabled show-desktop">
+          <!-- AR: Desktop only -->
+          <span class="btn btn-ar btn-disabled show-desktop-only">
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
             <span class="btn-label">View in AR</span>
           </span>
 
-          <!-- Movie button: always visible -->
+          <!-- Movie: always visible -->
           <a class="btn btn-movie" href="https://youtu.be/DdRDgkKhm7M" target="_blank">
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
             <span class="btn-label">View Movie</span>
@@ -137,25 +138,25 @@
         <div class="card-title">Microtubules and ER</div>
         <div class="btn-row">
 
-          <!-- AR button: iOS -->
+          <!-- AR: iOS -->
           <a class="btn btn-ar show-ios" href="https://somerville-jpg.github.io/Tau_Endosome/MT.usdz" rel="ar">
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
             <span class="btn-label">View in AR</span>
           </a>
 
-          <!-- AR button: Android -->
+          <!-- AR: Android -->
           <a class="btn btn-ar show-android" href="#" onclick="launchAR(event,'https://drive.google.com/uc?export=download&id=1mMdh8leEQ00AltF60AKnlxiwF4LG16Xj')">
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
             <span class="btn-label">View in AR</span>
           </a>
 
-          <!-- AR button: Desktop (disabled) -->
-          <span class="btn btn-ar btn-disabled show-desktop">
+          <!-- AR: Desktop only -->
+          <span class="btn btn-ar btn-disabled show-desktop-only">
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
             <span class="btn-label">View in AR</span>
           </span>
 
-          <!-- Movie button: always visible -->
+          <!-- Movie: always visible -->
           <a class="btn btn-movie" href="https://youtu.be/Y54Iosy9Xj8" target="_blank">
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
             <span class="btn-label">View Movie</span>
